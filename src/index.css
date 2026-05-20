@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Oswald', sans-serif;
+   /* overflow-x: hidden; */
+}
+
+.animated-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #ee1313f1,
+    #ffffff
+  );
+
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textShine 4s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.font-hero {
+  font-family: 'Oswald', sans-serif;
+}
+
+
+.premiumInput {
+  @apply w-full bg-[#f9fafb] border border-gray-500/60 rounded-lg p-3 mt-1 outline-none transition duration-200;
+}
+
+.premiumInput:hover {
+  @apply border-gray-600 bg-white;
+}
+
+.premiumInput:focus {
+  @apply border-[oklch(0.47_0.17_28.33)] bg-white ring-2 ring-[oklch(0.47_0.17_28.33)]/30;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  50% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+}
+
+.animate-growBar {
+  width: 0%;
+  animation: growBar 2s ease-out forwards;
+}
+
+@keyframes growBar {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: var(--final-width);
+  }
+}
+
