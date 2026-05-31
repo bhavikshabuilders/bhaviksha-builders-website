@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaUser,
-} from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaUser } from "react-icons/fa";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -30,71 +26,132 @@ export default function Contact() {
   });
 
   const [showPopup, setShowPopup] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setShowPopup(true);
-
     setForm({
-      name: "",
-      phone: "",
-      email: "",
-      type: "",
-      budget: "",
-      message: "",
+      ...form,
+      [e.target.name]: e.target.value,
     });
 
-    setTimeout(() => setShowPopup(false), 3000);
+    setErrors({
+      ...errors,
+      [e.target.name]: "",
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const newErrors = {};
+
+    if (!form.name.trim()) {
+      newErrors.name = "Please enter your full name";
+    }
+
+    if (!form.phone.trim()) {
+      newErrors.phone = "Please enter your mobile number";
+    } else if (!/^[6-9]\d{9}$/.test(form.phone)) {
+      newErrors.phone = "Please enter a valid 10-digit mobile number";
+    }
+
+    if (!form.email.trim()) {
+      newErrors.email = "Please enter your email address";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!form.type) {
+      newErrors.type = "Please select a project type";
+    }
+
+    if (!form.budget.trim()) {
+      newErrors.budget = "Please enter your estimated budget";
+    }
+
+    if (!form.message.trim()) {
+      newErrors.message = "Please enter project details";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        "service_1852j2k",
+        "template_eic0m5f",
+        {
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          type: form.type,
+          budget: form.budget,
+          message: form.message,
+        },
+        "W3X0wptwQu_1yv-nf",
+      );
+
+      setShowPopup(true);
+
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        type: "",
+        budget: "",
+        message: "",
+      });
+
+      setTimeout(() => setShowPopup(false), 6000);
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      alert("Failed to send enquiry.");
+    }
   };
 
   return (
     <section className="bg-gray-100 py-15 relative overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* HEADING */}
         <div className="text-center mb-16" data-aos="fade-down">
-          <p className="text-[oklch(0.47_0.17_28.33)] text-xs tracking-[4px] mb-3">
+          <p className="inline-block text-[oklch(0.47_0.17_28.33)] text-[13px] tracking-[3px] px-3 py-1 rounded backdrop-blur-sm bg-white/[0.04]">
             {t("contactBadge")}
           </p>
 
           <h2
-  className={`font-bold mb-4 text-[#0B1C2C] ${
-    i18n.language === "ta"
-      ? "text-[36px] md:text-[54px] leading-[1.3]"
-      : "text-4xl md:text-5xl"
-  }`}
->
+            className={`font-bold mb-4 text-[#0B1C2C] ${
+              i18n.language === "ta"
+                ? "text-[36px] md:text-[54px] leading-[1.3]"
+                : "text-4xl md:text-5xl"
+            }`}
+          >
             {t("contactTitle")}
           </h2>
 
           <p
-  className={`text-gray-600 max-w-2xl mx-auto ${
-    i18n.language === "ta"
-      ? "text-[14px] leading-[2]"
-      : ""
-  }`}
->
-           {t("contactDesc")}
+            className={`text-gray-600 max-w-2xl mx-auto ${
+              i18n.language === "ta" ? "text-[14px] leading-[2]" : ""
+            }`}
+          >
+            {t("contactDesc")}
           </p>
         </div>
 
         {/* GRID */}
         <div className="grid md:grid-cols-2 gap-10 items-stretch">
-
           {/* LEFT - FORM */}
-          <div className="bg-white shadow-xl rounded-3xl p-8 flex flex-col justify-between" data-aos="fade-right">
-
+          <div
+            className="bg-white shadow-xl rounded-3xl p-8 flex flex-col justify-between"
+            data-aos="fade-right"
+          >
             <div>
               <h3 className="text-xl font-semibold mb-6 text-[oklch(0.47_0.17_28.33)]">
                 {t("contactFormTitle")}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-
                 <div className="relative" data-aos="fade-up">
                   <FaUser className="absolute top-4 left-4 text-gray-400" />
                   <input
@@ -106,7 +163,15 @@ export default function Contact() {
                   />
                 </div>
 
-                <div className="relative" data-aos="fade-up" data-aos-delay="100">
+                {errors.name && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.name}</p>
+                )}
+
+                <div
+                  className="relative"
+                  data-aos="fade-up"
+                  data-aos-delay="100"
+                >
                   <FaPhoneAlt className="absolute top-4 left-4 text-gray-400" />
                   <input
                     name="phone"
@@ -117,7 +182,15 @@ export default function Contact() {
                   />
                 </div>
 
-                <div className="relative" data-aos="fade-up" data-aos-delay="200">
+                {errors.phone && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.phone}</p>
+                )}
+
+                <div
+                  className="relative"
+                  data-aos="fade-up"
+                  data-aos-delay="200"
+                >
                   <FaEnvelope className="absolute top-4 left-4 text-gray-400" />
                   <input
                     name="email"
@@ -128,28 +201,49 @@ export default function Contact() {
                   />
                 </div>
 
+                {errors.email && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.email}</p>
+                )}
+
                 <select
                   name="type"
                   value={form.type}
                   onChange={handleChange}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3"     data-aos="fade-up"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3"
+                  data-aos="fade-up"
                   data-aos-delay="300"
                 >
-               <option value="">{t("contactSelect")}</option>
-                <option>{t("contactType1")}</option>
-                <option>{t("contactType2")}</option>
-                <option>{t("contactType3")}</option>
-                <option>{t("contactType4")}</option>
+                  <option value="">{t("contactSelect")}</option>
+
+                  <option>{t("contactType1")}</option>
+                  <option>{t("contactType2")}</option>
+                  <option>{t("contactType3")}</option>
+                  <option>{t("contactType4")}</option>
+                  <option>{t("contactType5")}</option>
+                  <option>{t("contactType6")}</option>
+                  <option>{t("contactType7")}</option>
+                  <option>{t("contactType8")}</option>
+                  <option>{t("contactType9")}</option>
+                  <option>{t("contactType10")}</option>
                 </select>
+
+                {errors.type && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.type}</p>
+                )}
 
                 <input
                   name="budget"
                   value={form.budget}
                   onChange={handleChange}
                   placeholder={t("contactBudget")}
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3"      data-aos="fade-up"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3"
+                  data-aos="fade-up"
                   data-aos-delay="400"
                 />
+
+                {errors.budget && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.budget}</p>
+                )}
 
                 <textarea
                   name="message"
@@ -157,18 +251,23 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder={t("contactMessage")}
                   rows="4"
-                  className="w-full border border-gray-200 rounded-lg px-4 py-3"    data-aos="fade-up"
+                  className="w-full border border-gray-200 rounded-lg px-4 py-3"
+                  data-aos="fade-up"
                   data-aos-delay="500"
                 ></textarea>
 
+                {errors.message && (
+                  <p className="text-red-500 text-sm -mt-3">{errors.message}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-[oklch(0.47_0.17_28.33)] text-white py-3 rounded-lg font-medium hover:scale-[1.02] transition"   data-aos="zoom-in"
+                  className=" cursor-pointer w-full bg-[oklch(0.47_0.17_28.33)] text-white py-3 rounded-lg font-medium hover:scale-[1.02] transition"
+                  data-aos="zoom-in"
                   data-aos-delay="600"
                 >
-                 {t("contactBtn")}
+                  {t("contactBtn")}
                 </button>
-
               </form>
             </div>
 
@@ -178,27 +277,33 @@ export default function Contact() {
                 <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
                 +91 95852 75171
               </p>
-                <p className="flex items-center gap-3" data-aos="fade-up">
+              <p className="flex items-center gap-3" data-aos="fade-up">
                 <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
                 +91 86757 83639
               </p>
 
-              <p className="flex items-center gap-3"  data-aos="fade-up" data-aos-delay="100">
+              <p
+                className="flex items-center gap-3"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
                 <FaEnvelope className="text-[oklch(0.47_0.17_28.33)]" />
                 bhavikshabuilders@gmail.com
               </p>
 
-             <p className="flex items-center gap-3" data-aos="fade-up" data-aos-delay="200">
-  <FaMapMarkerAlt className="text-[oklch(0.47_0.17_28.33)]" />
-  {t("contactCity")}
-</p>
+              <p
+                className="flex items-center gap-3"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <FaMapMarkerAlt className="text-[oklch(0.47_0.17_28.33)]" />
+                {t("contactCity")}
+              </p>
             </div>
-
           </div>
 
           {/* RIGHT - MAP */}
-          <div className="flex flex-col h-full"  data-aos="fade-left">
-
+          <div className="flex flex-col h-full" data-aos="fade-left">
             <div className="rounded-3xl overflow-hidden shadow-xl h-[60%]">
               <iframe
                 title="location"
@@ -207,43 +312,41 @@ export default function Contact() {
               ></iframe>
             </div>
 
-            <div className="bg-white rounded-3xl shadow-xl p-6 mt-6 flex-1"  data-aos="fade-up"
-              data-aos-delay="200">
+            <div
+              className="bg-white rounded-3xl shadow-xl p-6 mt-6 flex-1"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <h3 className="text-lg font-semibold mb-3 text-[#0B1C2C]">
                 {t("contactLocation")}
               </h3>
 
-              <p className="text-gray-600 text-sm mb-4">
-                {t("contactVisit")}
-              </p>
+              <p className="text-gray-600 text-sm mb-4">{t("contactVisit")}</p>
 
               <p
-  className={`mb-2 ${
-    i18n.language === "ta"
-      ? "text-[15px] leading-[1.8]"
-      : "text-sm"
-  }`}
->
-  📍 {t("contactAddress")}
-</p>
-
-              <p className="text-sm">
-                🕒 {t("contactTime")}
+                className={`mb-2 ${
+                  i18n.language === "ta"
+                    ? "text-[15px] leading-[1.8]"
+                    : "text-sm"
+                }`}
+              >
+                📍 {t("contactAddress")}
               </p>
+
+              <p className="text-sm">🕒 {t("contactTime")}</p>
             </div>
-
           </div>
-
         </div>
       </div>
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
-
           <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
 
-          <div className="relative bg-white rounded-2xl shadow-2xl px-8 py-8 w-[90%] max-w-sm text-center animate-popup" data-aos="zoom-in">
-
+          <div
+            className="relative bg-white rounded-2xl shadow-2xl px-8 py-8 w-[90%] max-w-sm text-center animate-popup"
+            data-aos="zoom-in"
+          >
             <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-green-100 flex items-center justify-center">
               <span className="text-green-600 text-2xl">✓</span>
             </div>
@@ -252,9 +355,7 @@ export default function Contact() {
               {t("popupTitle")}
             </h3>
 
-            <p className="text-gray-600 text-sm mb-6">
-              {t("popupDesc")}
-            </p>
+            <p className="text-gray-600 text-sm mb-6">{t("popupDesc")}</p>
 
             <button
               onClick={() => setShowPopup(false)}
@@ -262,7 +363,6 @@ export default function Contact() {
             >
               {t("popupBtn")}
             </button>
-
           </div>
         </div>
       )}

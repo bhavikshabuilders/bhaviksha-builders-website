@@ -7,8 +7,6 @@ import Contact from "../sections/Contact";
 import Testimonials from "../sections/Testimonials";
 import FreeConsultation from "../sections/FreeConsultation";
 
-
-
 export default function Home() {
   return (
     <>

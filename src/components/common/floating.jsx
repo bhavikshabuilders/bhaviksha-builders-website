@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { FaPhoneAlt, FaWhatsapp, FaTimes } from "react-icons/fa";
+import { FaPhoneAlt, FaWhatsapp, FaTimes, FaUsers } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function FloatingButtons() {
   const [show, setShow] = useState(true);
@@ -7,7 +8,7 @@ function FloatingButtons() {
   const [pulse, setPulse] = useState(false);
   const audioRef = useRef(null);
 
-  // 🔥 Shake loop
+  //  Shake loop
   useEffect(() => {
     const interval = setInterval(() => {
       setShake(true);
@@ -16,7 +17,7 @@ function FloatingButtons() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔥 Pulse loop
+  //  Pulse loop
   useEffect(() => {
     const interval = setInterval(() => {
       setPulse(true);
@@ -25,7 +26,7 @@ function FloatingButtons() {
     return () => clearInterval(interval);
   }, []);
 
-  // 🔊 Play sound once (first load)
+  // Play sound once
   useEffect(() => {
     const timer = setTimeout(() => {
       audioRef.current?.play().catch(() => {});
@@ -41,7 +42,6 @@ function FloatingButtons() {
       <audio ref={audioRef} src="/sounds/notify.mp3" preload="auto" />
 
       <div className="fixed bottom-6 right-4 z-50 flex flex-col overflow-hidden items-end gap-3 animate-slideUp max-w-[calc(100vw-16px)]">
-
         {/* CLOSE */}
         <button
           onClick={() => setShow(false)}
@@ -116,7 +116,55 @@ function FloatingButtons() {
             </div>
           </div>
         </a>
+        <Link
+          to="/worker-request"
+          className={`
+    md:hidden
+    relative
+    w-[190px]
+    flex
+    items-center
+    gap-3
+    px-4
+    py-2.5
+    rounded-full
+    text-white
+    overflow-hidden
+    group
+    shadow-xl
+    hover:shadow-2xl
+    transition
+    animate-nudge
+    delay-300
+    ${shake ? "animate-[wiggle_0.6s_ease-in-out]" : ""}
+  `}
+        >
+          {/* BG */}
+          <span className="absolute inset-0 bg-gradient-to-r from-[oklch(0.47_0.17_28.33)] to-[oklch(0.42_0.15_28.33)]"></span>
 
+          {/* GLOW */}
+          <span className="absolute inset-0 rounded-full blur-md opacity-40 bg-[oklch(0.47_0.17_28.33)] group-hover:opacity-70 transition"></span>
+
+          {/* PULSE */}
+          {pulse && (
+            <span className="absolute inset-0 rounded-full border-2 border-white/40 animate-ping"></span>
+          )}
+
+          {/* SPLASH */}
+          <span className="absolute w-0 h-0 bg-white/30 rounded-full group-hover:w-[260px] group-hover:h-[260px] transition-all duration-500"></span>
+
+          {/* CONTENT */}
+          <div className="relative flex items-center gap-3 z-10">
+            <div className="bg-white/20 p-2 rounded-full shadow-inner group-hover:scale-110 transition">
+              <FaUsers className="text-xs" />
+            </div>
+
+            <div className="text-xs leading-tight">
+              <p className="font-semibold">Workforce</p>
+              <p className="opacity-90">Hire Skilled Workers</p>
+            </div>
+          </div>
+        </Link>
       </div>
     </>
   );

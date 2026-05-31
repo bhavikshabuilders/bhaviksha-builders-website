@@ -1,4 +1,4 @@
-/* 🔥 Background slow zoom */
+/*  Background slow zoom */
 @keyframes zoomSlow {
   0% {
     transform: scale(1);
@@ -12,7 +12,7 @@
   animation: zoomSlow 20s ease-in-out infinite alternate;
 }
 
-/* 🔥 Quote fade + slide */
+/*  Quote fade + slide */
 @keyframes fadeUp {
   0% {
     opacity: 0;

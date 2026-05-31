@@ -14,6 +14,7 @@ import Projects from "./pages/Projects";
 import ScrollToTop from "./components/common/ScrollToTop";
 import GetQuote from "./components/common/GetQuote";
 import FloatingButtons from "./components/common/floating";
+import WorkerRequest from "./pages/WorkerRequest/WorkerRequest";
 
 export default function App() {
   const location = useLocation();
@@ -40,10 +41,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-         <Route path="/services" element={<Services />} />
+        <Route path="/services" element={<Services />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
         <Route path="/getQuote" element={<GetQuote />} />
+        <Route path="/worker-request" element={<WorkerRequest />} />
       </Routes>
 
       <FloatingButtons />

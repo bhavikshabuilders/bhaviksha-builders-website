@@ -4,17 +4,17 @@ import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
 
 import projectImg1a from "../assets/hservice_img/projectImg1a.jpg";
-import projectImg1b from "../assets/hservice_img/projectImg1b.jpg"; 
-import projectImg2a from "../assets/hservice_img/projectImg2a.jpg"; 
-import projectImg2b from "../assets/hservice_img/projectImg2b.jpg"; 
-import projectImg3a from "../assets/hservice_img/projectImg3a.jpg"; 
-import projectImg3b from "../assets/hservice_img/projectImg3b.jpg"; 
-import projectImg4a from "../assets/hservice_img/projectImg4a.jpg"; 
-import projectImg4b from "../assets/hservice_img/projectImg4b.jpg"; 
-import projectImg5a from "../assets/hservice_img/projectImg5a.jpg"; 
-import projectImg5b from "../assets/hservice_img/projectImg5b.jpg"; 
-import projectImg6a from "../assets/hservice_img/projectImg6a.jpg"; 
-import projectImg6b from "../assets/hservice_img/projectImg6b.jpg"; 
+import projectImg1b from "../assets/hservice_img/projectImg1b.jpg";
+import projectImg2a from "../assets/hservice_img/projectImg2a.jpg";
+import projectImg2b from "../assets/hservice_img/projectImg2b.jpg";
+import projectImg3a from "../assets/hservice_img/projectImg3a.jpg";
+import projectImg3b from "../assets/hservice_img/projectImg3b.jpg";
+import projectImg4a from "../assets/hservice_img/projectImg4a.jpg";
+import projectImg4b from "../assets/hservice_img/projectImg4b.jpg";
+import projectImg5a from "../assets/hservice_img/projectImg5a.jpg";
+import projectImg5b from "../assets/hservice_img/projectImg5b.jpg";
+import projectImg6a from "../assets/hservice_img/projectImg6a.jpg";
+import projectImg6b from "../assets/hservice_img/projectImg6b.jpg";
 
 const projects = (t) => [
   {
@@ -58,12 +58,8 @@ const projects = (t) => [
 /* ================= CARD ================= */
 function ProjectCard({ project, onClick }) {
   const [i, setIndex] = useState(0);
-const { t, i18n } = useTranslation();
-const projectList = projects(t);
-
-
-
-  
+  const { t, i18n } = useTranslation();
+  const projectList = projects(t);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -75,8 +71,10 @@ const projectList = projects(t);
   return (
     <div
       onClick={() => onClick(project)}
-      className="relative overflow-hidden rounded-2xl group shadow-xl cursor-pointer"  data-aos="fade-up"
-      data-aos-delay={i * 120} bg-white
+      className="relative overflow-hidden rounded-2xl group shadow-xl cursor-pointer"
+      data-aos="fade-up"
+      data-aos-delay={i * 120}
+      bg-white
     >
       <img
         src={project.images[i]}
@@ -90,23 +88,23 @@ const projectList = projects(t);
           {project.type}
         </p>
         <h3
-  className={`font-bold ${
-    i18n.language === "ta"
-      ? "text-[19px] sm:text-[22px] leading-[1.6]"
-      : "text-xl"
-  }`}
->
-  {project.title}
-</h3>
+          className={`font-bold ${
+            i18n.language === "ta"
+              ? "text-[19px] sm:text-[22px] leading-[1.6]"
+              : "text-xl"
+          }`}
+        >
+          {project.title}
+        </h3>
         <p
-  className={`text-gray-300 ${
-    i18n.language === "ta"
-      ? "text-[13px] sm:text-[15px] leading-[1.8]"
-      : "text-sm"
-  }`}
->
-  {project.location}
-</p>
+          className={`text-gray-300 ${
+            i18n.language === "ta"
+              ? "text-[13px] sm:text-[15px] leading-[1.8]"
+              : "text-sm"
+          }`}
+        >
+          {project.location}
+        </p>
       </div>
     </div>
   );
@@ -115,16 +113,13 @@ const projectList = projects(t);
 /* ================= LIGHTBOX ================= */
 function Lightbox({ project, onClose }) {
   const [index, setIndex] = useState(0);
-const { t, i18n } = useTranslation();
-const projectList = projects(t);
-
-
+  const { t, i18n } = useTranslation();
+  const projectList = projects(t);
 
   if (!project) return null;
 
   return (
     <div className="fixed inset-0 bg-black/90 flex items-center justify-center z-50 overflow-hidden bg-white">
-
       {/* Close */}
       <button
         onClick={onClose}
@@ -144,7 +139,8 @@ const projectList = projects(t);
       {/* Image */}
       <img
         src={project.images[index]}
-       className="max-h-[75vh] max-w-[92vw] rounded-xl shadow-lg object-contain" alt={project.title}
+        className="max-h-[75vh] max-w-[92vw] rounded-xl shadow-lg object-contain"
+        alt={project.title}
       />
 
       {/* Next */}
@@ -154,7 +150,6 @@ const projectList = projects(t);
       >
         ›
       </button>
-
     </div>
   );
 }
@@ -162,12 +157,10 @@ const projectList = projects(t);
 /* ================= MAIN ================= */
 export default function Projects() {
   const [selected, setSelected] = useState(null);
-const { t, i18n } = useTranslation();
-const projectList = projects(t);
+  const { t, i18n } = useTranslation();
+  const projectList = projects(t);
 
-
-
-    useEffect(() => {
+  useEffect(() => {
     AOS.init({
       duration: 1000,
       once: true,
@@ -178,19 +171,18 @@ const projectList = projects(t);
   return (
     <section className="py-14 sm:py-16 bg-gray-100 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-5 sm:px-6">
-
         <div className="text-center mb-14" data-aos="fade-down">
-          <p className="text-[oklch(0.47_0.17_28.33)] font-semibold mb-2">
-           {t("projectsBadge")}
+          <p className="inline-block text-[oklch(0.47_0.17_28.33)] text-[13px] tracking-[3px] px-3 py-1 rounded backdrop-blur-sm bg-white/[0.04]">
+            {t("projectsBadge")}
           </p>
 
           <h2
-  className={`font-bold ${
-    i18n.language === "ta"
-      ? "text-[30px] sm:text-[38px] md:text-[42px] leading-[1.35]"
-      : "text-4xl"
-  }`}
->
+            className={`font-bold ${
+              i18n.language === "ta"
+                ? "text-[30px] sm:text-[38px] md:text-[42px] leading-[1.35]"
+                : "text-4xl"
+            }`}
+          >
             {t("projectsTitle")}
           </h2>
         </div>
@@ -200,7 +192,6 @@ const projectList = projects(t);
             <ProjectCard key={i} project={p} onClick={setSelected} />
           ))}
         </div>
-
       </div>
 
       {/* Lightbox */}

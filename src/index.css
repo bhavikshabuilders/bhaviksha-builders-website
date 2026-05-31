@@ -4,17 +4,12 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Oswald', sans-serif;
-   /* overflow-x: hidden; */
+  font-family: "Oswald", sans-serif;
+  /* overflow-x: hidden; */
 }
 
 .animated-gradient-text {
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #ee1313f1,
-    #ffffff
-  );
+  background: linear-gradient(90deg, #ffffff, #ee1313f1, #ffffff);
 
   background-size: 200% auto;
 
@@ -30,12 +25,16 @@ body {
   }
 }
 
-
-
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .animate-float {
@@ -43,9 +42,8 @@ body {
 }
 
 .font-hero {
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
-
 
 .premiumInput {
   @apply w-full bg-[#f9fafb] border border-gray-500/60 rounded-lg p-3 mt-1 outline-none transition duration-200;
@@ -60,10 +58,19 @@ body {
 }
 
 @keyframes wiggle {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-3px); }
-  50% { transform: translateX(3px); }
-  75% { transform: translateX(-2px); }
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
 }
 
 .animate-growBar {
@@ -80,4 +87,3 @@ body {
     width: var(--final-width);
   }
 }
-

@@ -65,18 +65,15 @@ export default function Testimonials() {
 
   return (
     <section className="py-15 bg-gray-100 overflow-hidden bg-white">
-
       {/* MAIN CONTAINER */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-12 items-center">
-
         {/* LEFT SIDE */}
         <div
           data-aos="fade-right"
           key={active}
           className="w-full overflow-hidden"
         >
-
-          <p className="text-[oklch(0.47_0.17_28.33)] font-semibold mb-2">
+          <p className="inline-block text-[oklch(0.47_0.17_28.33)] text-[13px] tracking-[3px] px-3 py-1 rounded backdrop-blur-sm bg-white/[0.04]">
             {t("testBadge")}
           </p>
 
@@ -109,7 +106,6 @@ export default function Testimonials() {
             data-aos="fade-up"
             data-aos-delay="150"
           >
-
             <img
               src={current.image}
               alt={current.name}
@@ -117,9 +113,7 @@ export default function Testimonials() {
             />
 
             <div>
-              <h3 className="font-semibold text-lg">
-                {current.name}
-              </h3>
+              <h3 className="font-semibold text-lg">{current.name}</h3>
 
               <p
                 className={`text-gray-500 ${
@@ -131,14 +125,11 @@ export default function Testimonials() {
                 {current.role}
               </p>
             </div>
-
           </div>
-
         </div>
 
         {/* RIGHT SIDE LIST */}
         <div className="space-y-4 w-full overflow-hidden" data-aos="fade-left">
-
           {testimonialList.map((t, i) => (
             <div
               key={i}
@@ -151,7 +142,6 @@ export default function Testimonials() {
                   : "bg-white hover:shadow-md"
               }`}
             >
-
               <img
                 src={t.image}
                 alt={t.name}
@@ -159,9 +149,7 @@ export default function Testimonials() {
               />
 
               <div className="overflow-hidden">
-                <h4 className="font-semibold break-words">
-                  {t.name}
-                </h4>
+                <h4 className="font-semibold break-words">{t.name}</h4>
 
                 <p
                   className={`opacity-70 break-words ${
@@ -173,14 +161,10 @@ export default function Testimonials() {
                   {t.role}
                 </p>
               </div>
-
             </div>
           ))}
-
         </div>
-
       </div>
-
     </section>
   );
 }
