@@ -84,6 +84,7 @@ export default function GetQuote() {
     }
 
     try {
+      setSuccess(true);
       await emailjs.send(
         "service_1852j2k",
         "template_dfb6x2y",
@@ -99,7 +100,7 @@ export default function GetQuote() {
         "W3X0wptwQu_1yv-nf",
       );
 
-      setSuccess(true);
+      
 
       setForm({
         name: "",

@@ -117,6 +117,7 @@ export default function WorkerRequest() {
     }
 
     try {
+      setSuccess(true);
       await emailjs.send(
         "service_1852j2k",
         "template_l1gbul9",
@@ -136,7 +137,7 @@ export default function WorkerRequest() {
         "W3X0wptwQu_1yv-nf",
       );
 
-      setSuccess(true);
+      
 
       setForm({
         name: "",

@@ -79,6 +79,7 @@ export default function Contact() {
     }
 
     try {
+      setShowPopup(true);
       await emailjs.send(
         "service_1852j2k",
         "template_eic0m5f",
@@ -92,8 +93,6 @@ export default function Contact() {
         },
         "W3X0wptwQu_1yv-nf",
       );
-
-      setShowPopup(true);
 
       setForm({
         name: "",

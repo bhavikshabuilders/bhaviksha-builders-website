@@ -3,6 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
 
+
 export default function Contact() {
   const { t, i18n } = useTranslation();
 
