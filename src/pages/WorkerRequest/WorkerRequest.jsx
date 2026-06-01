@@ -119,8 +119,8 @@ export default function WorkerRequest() {
     try {
       setSuccess(true);
       await emailjs.send(
-        "service_1852j2k",
-        "template_l1gbul9",
+        "service_49dltsa",
+        "template_t2pi0la",
         {
           name: form.name,
           phone: form.phone,
@@ -134,10 +134,8 @@ export default function WorkerRequest() {
           urgency: form.urgency,
           workDescription: form.workDescription,
         },
-        "W3X0wptwQu_1yv-nf",
+        "3RKaNCbFD_wtdZDkC",
       );
-
-      
 
       setForm({
         name: "",

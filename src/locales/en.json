@@ -497,5 +497,12 @@
   "workerPopupTitle": "Request Submitted Successfully",
   "workerPopupDesc": "Thank you for submitting your workforce requirement. Our team will review your request and contact you shortly.",
   "workerPopupButton": "Close",
-  "workforceMenu": "Workforce"
+  "workforceMenu": "Workforce",
+  "emailAddress": "Email Address",
+  "boqEmailPlaceholder": "Enter your email address",
+  "whyChooseUs": "Why Choose Our BOQ Service?",
+  "boqBenefit1": "Detailed and accurate quantity estimation",
+  "boqBenefit2": "Transparent budget planning and cost breakdown",
+  "boqBenefit3": "Prepared by experienced construction professionals",
+  "boqBenefit4": "Helps avoid unnecessary project expenses"
 }

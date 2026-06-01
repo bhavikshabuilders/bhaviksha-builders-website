@@ -81,8 +81,8 @@ export default function Contact() {
     try {
       setShowPopup(true);
       await emailjs.send(
-        "service_1852j2k",
-        "template_eic0m5f",
+        "service_49dltsa",
+        "template_hd6wa0k",
         {
           name: form.name,
           phone: form.phone,
@@ -91,7 +91,7 @@ export default function Contact() {
           budget: form.budget,
           message: form.message,
         },
-        "W3X0wptwQu_1yv-nf",
+        "3RKaNCbFD_wtdZDkC",
       );
 
       setForm({
@@ -358,7 +358,7 @@ export default function Contact() {
 
             <button
               onClick={() => setShowPopup(false)}
-              className="px-6 py-2 rounded-md bg-[oklch(0.47_0.17_28.33)] text-white"
+              className=" cursor-pointer px-6 py-2 rounded-md bg-[oklch(0.47_0.17_28.33)] text-white"
             >
               {t("popupBtn")}
             </button>

@@ -14,7 +14,9 @@ export default function GetQuote() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
+    email: "",
     location: "",
+
     projectType: "",
     budgetRange: "",
     plotSize: "",
@@ -58,6 +60,12 @@ export default function GetQuote() {
       newErrors.phone = "Please enter a valid 10-digit mobile number";
     }
 
+    if (!form.email.trim()) {
+      newErrors.email = "Please enter your email address";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(form.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
     if (!form.location.trim()) {
       newErrors.location = "Please enter project location";
     }
@@ -86,25 +94,25 @@ export default function GetQuote() {
     try {
       setSuccess(true);
       await emailjs.send(
-        "service_1852j2k",
-        "template_dfb6x2y",
+        "service_t2279i8",
+        "template_2q6rtls",
         {
           name: form.name,
           phone: form.phone,
+          email: form.email,
           location: form.location,
           projectType: form.projectType,
           budgetRange: form.budgetRange,
           plotSize: form.plotSize,
           requirements: form.requirements,
         },
-        "W3X0wptwQu_1yv-nf",
+        "q2MECQtjQLgW5fljx",
       );
-
-      
 
       setForm({
         name: "",
         phone: "",
+        email: "",
         location: "",
         projectType: "",
         budgetRange: "",
@@ -116,17 +124,11 @@ export default function GetQuote() {
 
       setTimeout(() => {
         setSuccess(false);
-      }, 3000);
+      }, 6000);
     } catch (error) {
       console.error("EmailJS Error:", error);
       alert("Failed to send request. Please try again.");
     }
-
-    setSuccess(true);
-
-    setTimeout(() => {
-      setSuccess(false);
-    }, 6000);
   };
 
   return (
@@ -695,10 +697,49 @@ export default function GetQuote() {
                 </div>
               </div>
 
+              <div className="bg-white border border-[oklch(0.47_0.17_28.33/0.12)] rounded-2xl p-5 shadow-sm mt-5">
+                <h4 className="font-bold text-[#111827] mb-4">
+                  {t("whyChooseUs")}
+                </h4>
+
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <span className="text-[oklch(0.47_0.17_28.33)] text-lg">
+                      ✓
+                    </span>
+                    <p className="text-sm text-gray-700">{t("boqBenefit1")}</p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-[oklch(0.47_0.17_28.33)] text-lg">
+                      ✓
+                    </span>
+                    <p className="text-sm text-gray-700">{t("boqBenefit2")}</p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-[oklch(0.47_0.17_28.33)] text-lg">
+                      ✓
+                    </span>
+                    <p className="text-sm text-gray-700">{t("boqBenefit3")}</p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="text-[oklch(0.47_0.17_28.33)] text-lg">
+                      ✓
+                    </span>
+                    <p className="text-sm text-gray-700">{t("boqBenefit4")}</p>
+                  </div>
+                </div>
+              </div>
               <div className="bg-gray-100 p-5 rounded-xl border border-gray-200">
                 <p className="text-sm text-gray-600">📞 {t("quickSupport")}</p>
+
                 <p className="font-semibold text-lg">+91 9585275171</p>
-                <p className="text-xs text-gray-500">{t("instantConsult")}</p>
+
+                <p className="text-xs text-gray-500 mb-4">
+                  {t("instantConsult")}
+                </p>
               </div>
             </div>
 
@@ -777,6 +818,25 @@ export default function GetQuote() {
                       </p>
                     )}
                   </div>
+                </div>
+
+                <div>
+                  <label className="text-xs text-gray-500">
+                    {t("emailAddress")}
+                  </label>
+
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    className="premiumInput"
+                    placeholder={t("boqEmailPlaceholder")}
+                  />
+
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-2">{errors.email}</p>
+                  )}
                 </div>
 
                 {/* LOCATION */}
@@ -972,7 +1032,7 @@ export default function GetQuote() {
             {/* ACTION BUTTON */}
             <button
               onClick={() => setSuccess(false)}
-              className="px-6 py-2 rounded-full bg-[oklch(0.47_0.17_28.33)] text-white text-sm font-medium hover:brightness-110 transition"
+              className=" cursor-pointer px-6 py-2 rounded-full bg-[oklch(0.47_0.17_28.33)] text-white text-sm font-medium hover:brightness-110 transition"
               data-aos="fade-up"
               data-aos-delay="250"
             >
