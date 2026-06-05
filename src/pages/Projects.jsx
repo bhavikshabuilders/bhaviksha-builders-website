@@ -225,13 +225,14 @@ export default function Projects() {
                   </div>
 
                   {/* BUTTON */}
-                  <button
-                    className={`bg-[oklch(0.47_0.17_28.33)] px-6 py-3 rounded-xl font-semibold hover:brightness-110 transition ${
-                      i18n.language === "ta" ? "text-[14px]" : ""
-                    }`}
-                  >
-                    {t("consultBtn")}
-                  </button>
+              <a
+                href="https://wa.me/919585275171"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-[oklch(0.47_0.17_28.33)] px-6 py-2 rounded-xl font-semibold hover:brightness-110 transition"
+              >
+                {t("consultBtn")}
+              </a>
                 </div>
 
             {/* RIGHT SIDE */}
