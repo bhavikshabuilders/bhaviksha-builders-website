@@ -253,7 +253,7 @@ export default function Projects() {
                         : "text-sm"
                     }`}
                   >
-                    📞 +91 95852 75171
+                    📞 +91 86757 83639
                   </p>
 
                   <p
@@ -263,7 +263,7 @@ export default function Projects() {
                         : "text-sm"
                     }`}
                   >
-                    📞 +91 86757 83639
+                    📞 +91 95852 75171
                   </p>
 
                   <p
