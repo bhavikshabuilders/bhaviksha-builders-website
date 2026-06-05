@@ -108,7 +108,7 @@ export default function FreeConsultation() {
                 data-aos-delay="300"
               >
                 <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
-                +91 86757 83639
+                +91 9585275171
               </p>
 
               <p
@@ -117,7 +117,7 @@ export default function FreeConsultation() {
                 data-aos-delay="300"
               >
                 <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
-                +91 86757 83639
+                +91 8675783639
               </p>
 
               <p

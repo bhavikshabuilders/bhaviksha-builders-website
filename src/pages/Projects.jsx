@@ -238,9 +238,10 @@ export default function Projects() {
                   data-aos="fade-left"
                 >
                   <h3
-                    className={`font-semibold mb-4 ${
-                      i18n.language === "ta" ? "text-[14px]" : "text-lg"
-                    }`}
+                    className={`          
+                      font-semibold mb-4 ${
+                        i18n.language === "ta" ? "text-[14px]" : "text-lg"
+                      }`}
                   >
                     {t("consultContact")}
                   </h3>
@@ -253,6 +254,16 @@ export default function Projects() {
                     }`}
                   >
                     📞 +91 9585275171
+                  </p>
+
+                  <p
+                    className={`text-gray-300 mb-3 ${
+                      i18n.language === "ta"
+                        ? "text-[14px] leading-[1.8]"
+                        : "text-sm"
+                    }`}
+                  >
+                    📞 +91 8675783639
                   </p>
 
                   <p
