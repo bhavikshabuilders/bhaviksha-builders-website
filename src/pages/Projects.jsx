@@ -11,6 +11,8 @@ import { MdOutlineDesignServices } from "react-icons/md";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useTranslation } from "react-i18next";
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaUser } from "react-icons/fa";
+
 // Images
 import proj1 from "../assets/images/projects/p1.jpg";
 import proj2 from "../assets/images/projects/p2.jpg";
@@ -232,60 +234,50 @@ export default function Projects() {
                   </button>
                 </div>
 
-                {/* RIGHT SIDE */}
-                <div
-                  className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
-                  data-aos="fade-left"
-                >
-                  <h3
-                    className={`          
-                      font-semibold mb-4 ${
-                        i18n.language === "ta" ? "text-[14px]" : "text-lg"
-                      }`}
-                  >
-                    {t("consultContact")}
-                  </h3>
+            {/* RIGHT SIDE */}
+            <div
+              className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
+              data-aos="fade-left"
+              data-aos-delay="200"
+            >
+              <h3 className="text-lg font-semibold mb-4">
+                {t("consultContact")}
+              </h3>
 
-                  <p
-                    className={`text-gray-300 mb-3 ${
-                      i18n.language === "ta"
-                        ? "text-[14px] leading-[1.8]"
-                        : "text-sm"
-                    }`}
-                  >
-                    📞 +91 86757 83639
-                  </p>
+              <p
+                className=" flex text-sm text-gray-300 mb-2 gap-2 items-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
+                +91 86757 83639
+              </p>
 
-                  <p
-                    className={`text-gray-300 mb-3 ${
-                      i18n.language === "ta"
-                        ? "text-[14px] leading-[1.8]"
-                        : "text-sm"
-                    }`}
-                  >
-                    📞 +91 95852 75171
-                  </p>
+              <p
+                className=" flex text-sm text-gray-300 mb-2 gap-2 items-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
+                +91 95852 75171
+              </p>
 
-                  <p
-                    className={`text-gray-300 mb-3 ${
-                      i18n.language === "ta"
-                        ? "text-[14px] leading-[1.8]"
-                        : "text-sm"
-                    }`}
-                  >
-                    {t("consultCity")}
-                  </p>
+              <p
+                className="text-sm text-gray-300 mb-3"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                📍 Salem, Tamil Nadu
+              </p>
 
-                  <p
-                    className={`text-gray-300 ${
-                      i18n.language === "ta"
-                        ? "text-[14px] leading-[1.7]"
-                        : "text-sm"
-                    }`}
-                  >
-                    {t("consultTime")}
-                  </p>
-                </div>
+              <p
+                className="text-sm text-gray-300"
+                data-aos="fade-up"
+                data-aos-delay="500"
+              >
+                ⏰ {t("consultTime")}
+              </p>
+            </div>
               </div>
             </div>
           </div>
