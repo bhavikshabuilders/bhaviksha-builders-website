@@ -253,7 +253,7 @@ export default function Projects() {
                         : "text-sm"
                     }`}
                   >
-                    📞 +91 9585275171
+                    📞 +91 95852 75171
                   </p>
 
                   <p
@@ -263,7 +263,7 @@ export default function Projects() {
                         : "text-sm"
                     }`}
                   >
-                    📞 +91 8675783639
+                    📞 +91 86757 83639
                   </p>
 
                   <p
@@ -279,7 +279,7 @@ export default function Projects() {
                   <p
                     className={`text-gray-300 ${
                       i18n.language === "ta"
-                        ? "text-[14px] leading-[1.8]"
+                        ? "text-[14px] leading-[1.7]"
                         : "text-sm"
                     }`}
                   >
