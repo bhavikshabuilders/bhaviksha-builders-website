@@ -245,14 +245,7 @@ export default function Projects() {
                 {t("consultContact")}
               </h3>
 
-              <p
-                className=" flex text-sm text-gray-300 mb-2 gap-2 items-center"
-                data-aos="fade-up"
-                data-aos-delay="300"
-              >
-                <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
-                +91 86757 83639
-              </p>
+
 
               <p
                 className=" flex text-sm text-gray-300 mb-2 gap-2 items-center"
@@ -261,6 +254,14 @@ export default function Projects() {
               >
                 <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
                 +91 95852 75171
+              </p>
+                            <p
+                className=" flex text-sm text-gray-300 mb-2 gap-2 items-center"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <FaPhoneAlt className="text-[oklch(0.47_0.17_28.33)]" />
+                +91 86757 83639
               </p>
 
               <p
